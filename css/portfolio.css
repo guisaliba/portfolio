@@ -1,0 +1,269 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: #e3e3e3;
+  text-decoration: none;
+}
+
+.nav-link > a,
+.footer-link {
+  color: #e3e3e3;
+  text-decoration: underline;
+}
+
+.container {
+  background-color: #040303;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  padding: 2.5rem;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  color: #fff;
+  list-style-type: none;
+  font-size: 1rem;
+}
+
+.about {
+  display: flex; /* establish flex container */
+  justify-content: center; /* center flex items horizontally, in this case */
+  align-items: center; /*center flex items vertically, in this case */
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.name,
+.age {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.nav-info {
+  margin-bottom: 0.75rem;
+}
+
+.nav-info-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+.nav-info-item {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.social {
+  margin-bottom: 4rem;
+}
+
+.social-list {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.social-item {
+  list-style-type: none;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.studying {
+  color: #b3b3b3;
+  margin-bottom: 2rem;
+}
+
+.other-stuff {
+  color: #b3b3b3;
+  margin-bottom: 2rem;
+}
+
+.heart-devs {
+  color: #9742ac;
+}
+
+.techs {
+  display: flex; /* establish flex container */
+  justify-content: center; /* center flex items horizontally, in this case */
+  align-items: center; /*center flex items vertically, in this case */
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.databases {
+  width: inherit;
+}
+
+.latest-posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.latest-posts {
+  margin-bottom: 6rem;
+}
+
+.latest-posts-text {
+}
+
+.posts-list {
+  list-style-type: none;
+}
+
+.frontend-title,
+.backend-title,
+.databases-title,
+.latest-posts-title {
+  color: #fff;
+}
+
+.frontend-text,
+.backend-text,
+.databases-text,
+.latest-posts-text,
+.tools,
+.posts-list,
+.tools-text,
+.footer-text {
+  color: #e3e3e3;
+}
+
+.frontend i,
+.backend i,
+.databases i,
+.other i {
+  color: #e3e3e3;
+  font-size: 2.75rem;
+  transition: color 0.2s ease;
+}
+
+.latest-posts-text:nth-of-type(2),
+.databases-text:nth-of-type(2),
+.backend-text:nth-of-type(2) {
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1.5rem;
+}
+
+.devicon-javascript-plain:hover {
+  color: #f0db4f;
+}
+
+.devicon-typescript-plain:hover {
+  color: #007acc;
+}
+
+.devicon-react-plain:hover {
+  color: #61dafb;
+}
+
+.devicon-tailwindcss-plain:hover {
+  color: #2298bd;
+}
+
+.devicon-nextjs-plain:hover {
+  color: #979696;
+}
+
+.devicon-vuejs-plain:hover {
+  color: #41b883;
+}
+
+.devicon-csharp-plain:hover {
+  color: #68217a;
+}
+
+.devicon-java-plain:hover {
+  color: #ea2d2e;
+}
+
+.devicon-nodejs-plain:hover {
+  color: #83cd29;
+}
+
+.devicon-express-original:hover {
+  color: #a3a3a3;
+}
+
+.devicon-nestjs-plain:hover {
+  color: #df234f;
+}
+
+.devicon-dot-net-plain-wordmark:hover {
+  color: #1384c8;
+}
+
+.devicon-docker-plain:hover {
+  color: #019bc6;
+}
+
+.devicon-postgresql-plain:hover {
+  color: #336791;
+}
+
+.devicon-redis-plain:hover {
+  color: #d82c20;
+}
+
+.devicon-sqlite-plain:hover {
+  color: #0f80cc;
+}
+
+.devicon-bash-plain:hover {
+  color: #a3a3a3;
+}
+
+#vercel:hover {
+  color: #a3a3a3;
+}
+
+.devicon-ubuntu-plain:hover {
+  color: #e95420;
+}
+
+.devicon-git-plain:hover {
+  color: #f34f29;
+}
+
+.devicon-markdown-original:hover {
+  color: #a3a3a3;
+}
+
+.devicon-unity-original:hover {
+  color: #a3a3a3;
+}
