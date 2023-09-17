@@ -20,11 +20,23 @@ a {
 .backend-title,
 .databases-title,
 .tools-title,
-.latest-poosts-title,
+.latest-posts-title,
 .footer-text,
 .nav-link {
   font-family: 'Outfit', monospace;
   font-weight: 400;
+}
+
+.frontend-title,
+.backend-title,
+.databases-title,
+.tools-title,
+.latest-posts-title {
+  font-size: 1.75rem;
+}
+
+.footer-text {
+  font-size: 1rem;
 }
 
 .more-info,
@@ -109,6 +121,10 @@ a {
   font-size: 1.15rem;
 }
 
+.social {
+  margin-bottom: 0.5rem;
+}
+
 .social-list {
   display: flex;
   gap: 0.7rem;
@@ -141,7 +157,7 @@ a {
   align-items: center; /*center flex items vertically, in this case */
   flex-direction: column;
   gap: 2rem;
-  padding: 4rem;
+  padding: 0 4rem;
 }
 
 .databases {
@@ -152,9 +168,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.latest-posts-container {
   margin-bottom: 2.5rem;
 }
 
@@ -211,6 +224,10 @@ a {
   color: #e3e3e3;
   font-size: 2.75rem;
   transition: color 0.2s ease;
+}
+
+.latest-posts {
+  margin-bottom: 1.5rem;
 }
 
 .latest-posts-text {
