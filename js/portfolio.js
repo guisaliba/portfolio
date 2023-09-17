@@ -16,6 +16,7 @@ fetch('https://dev.to/api/articles?username=guisaliba')
 
       const link = document.createElement('a');
       link.href = article.url;
+      link.classList.add('article-link');
       link.textContent = article.title;
       link.style.textDecoration = 'underline';
 
@@ -23,6 +24,7 @@ fetch('https://dev.to/api/articles?username=guisaliba')
       articleDate.innerHTML = new Date(
         article.published_at
       ).toLocaleDateString();
+      articleDate.classList.add('article-date');
 
       listItem.appendChild(link);
       listItem.appendChild(articleDate);

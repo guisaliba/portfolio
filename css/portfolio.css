@@ -11,6 +11,40 @@ a {
   text-decoration: none;
 }
 
+.logo,
+.name,
+.age,
+.nav-info-item,
+.heart-devs,
+.frontend-title,
+.backend-title,
+.databases-title,
+.tools-title,
+.latest-poosts-title,
+.footer-text,
+.nav-link {
+  font-family: 'Outfit', monospace;
+  font-weight: 400;
+}
+
+.more-info,
+.frontend-text,
+.backend-text,
+.databases-text,
+.tools-text,
+.latest-posts-text,
+.article-link,
+.article-date {
+  font-family: 'Sora', monospace;
+  font-weight: 300;
+}
+
+.name,
+.age {
+  color: #fff;
+  font-size: 2.75rem;
+}
+
 .nav-link > a,
 .footer-link {
   color: #e3e3e3;
@@ -33,7 +67,7 @@ a {
 
 .logo {
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   text-decoration: none;
 }
 
@@ -45,7 +79,7 @@ a {
 .nav-link {
   color: #fff;
   list-style-type: none;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 .about {
@@ -60,12 +94,6 @@ a {
   gap: 0.5rem;
 }
 
-.name,
-.age {
-  color: #fff;
-  font-size: 2.5rem;
-}
-
 .nav-info {
   margin-bottom: 0.75rem;
 }
@@ -78,11 +106,7 @@ a {
 
 .nav-info-item {
   color: #fff;
-  font-size: 1rem;
-}
-
-.social {
-  margin-bottom: 4rem;
+  font-size: 1.15rem;
 }
 
 .social-list {
@@ -92,7 +116,7 @@ a {
 
 .social-item {
   list-style-type: none;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   text-decoration: none;
 }
 
@@ -101,9 +125,10 @@ a {
   margin-bottom: 2rem;
 }
 
-.other-stuff {
+.more-info {
+  font-size: 1.05rem;
   color: #b3b3b3;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .heart-devs {
@@ -116,7 +141,7 @@ a {
   align-items: center; /*center flex items vertically, in this case */
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 2.5rem;
+  padding: 4rem;
 }
 
 .databases {
@@ -129,11 +154,8 @@ a {
   align-items: center;
 }
 
-.latest-posts {
-  margin-bottom: 6rem;
-}
-
-.latest-posts-text {
+.latest-posts-container {
+  margin-bottom: 2.5rem;
 }
 
 .posts-list {
@@ -143,31 +165,58 @@ a {
 .frontend-title,
 .backend-title,
 .databases-title,
-.latest-posts-title {
+.latest-posts-title,
+.tools-title,
+.footer-text {
   color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .frontend-text,
 .backend-text,
 .databases-text,
 .latest-posts-text,
-.tools,
-.posts-list,
 .tools-text,
-.footer-text {
+.posts-list,
+.tools-title {
   color: #e3e3e3;
 }
 
-.frontend i,
-.backend i,
-.databases i,
-.other i {
+.frontend-title,
+.backend-title,
+.databases-title,
+.tools-title,
+.latest-posts-title,
+.frontend-text,
+.backend-text,
+.databases-text,
+.latest-posts-text,
+.tools-text {
+  display: flex; /* establish flex container */
+  justify-content: center; /* center flex items horizontally, in this case */
+  align-items: center; /*center flex items vertically, in this case */
+  flex-direction: row;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.icons i {
   color: #e3e3e3;
   font-size: 2.75rem;
   transition: color 0.2s ease;
 }
 
-.latest-posts-text:nth-of-type(2),
+.latest-posts-text {
+  margin-bottom: 1.5rem;
+}
+
 .databases-text:nth-of-type(2),
 .backend-text:nth-of-type(2) {
   margin-bottom: 1.5rem;
