@@ -3,22 +3,196 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/portfolio.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Sora:wght@300;400&display=swap"
       rel="stylesheet"
     />
-    <title>pong</title>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>guisaliba.co</title>
   </head>
   <body>
-    <h1 class="welcome">beat me to see more about me</h1>
-    <div class="ball" id="ball"></div>
-    <div class="paddle left" id="player-paddle"></div>
-    <div class="paddle right" id="computer-paddle"></div>
+    <div class="container">
+      <header class="header">
+        <a class="logo" href="index.html">guisaliba</a>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-link">
+              <a href="https://heartdevs.com/" class="heart-devs">he4rtdevs</a>
+            </li>
+            <li class="nav-link">&#x2022;</li>
+            <li class="nav-link">
+              <a href="https://open.spotify.com/user/12142578906">playlists</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-    <script type="module" src="./js/pong.js"></script>
+      <main class="about">
+        <div class="info">
+          <h1 class="name">guilherme saliba</h1>
+          <p class="age">&#x2022; 21</p>
+        </div>
+        <nav class="nav-info">
+          <ul class="nav-info-list">
+            <li class="nav-info-item">student &#x2022;</li>
+            <li class="nav-info-item">software developer &#x2022;</li>
+            <li class="nav-info-item">writer</li>
+          </ul>
+        </nav>
+        <nav class="social">
+          <ul class="social-list">
+            <li class="social-item">
+              <a href="https://github.com/guisaliba">
+                <i class="ph-fill ph-github-logo" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="https://www.linkedin.com/in/guisaliba">
+                <i class="ph-fill ph-linkedin-logo" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="https://twitter.com/guisaliba1">
+                <i class="ph-fill ph-twitter-logo" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="https://twitch.tv/salibaa">
+                <i class="ph-bold ph-twitch-logo"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="https://dev.to/guisaliba">
+                <i class="ph-fill ph-dev-to-logo" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="mailto:salibagui19@gmail.com">
+                <i class="ph-bold ph-at" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+            <li class="social-item">
+              <a href="cv.pdf" download>
+                <i class="ph-bold ph-read-cv-logo" style="color: #e3e3e3"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <p class="more-info">
+          <span class="heart-devs">@he4rtdevs</span> member
+        </p>
+      </main>
+      <div class="techs">
+        <div class="frontend">
+          <h2 class="frontend-title">frontend</h2>
+          <p class="frontend-text">
+            bringing ideas to life with React, Next and TailwindCSS.
+          </p>
+          <p class="frontend-text">
+            building experiences with ASP.NET Core as well.
+          </p>
+
+          <br />
+          <div class="icons">
+            <i class="devicon-javascript-plain"></i>
+            <i class="devicon-typescript-plain"></i>
+            <i class="devicon-react-plain"></i>
+            <i class="devicon-tailwindcss-plain"></i>
+            <i class="devicon-nextjs-plain"></i>
+          </div>
+        </div>
+        <div class="backend">
+          <h2 class="backend-title">backend</h2>
+          <p class="backend-text">
+            building robust applications in C#, Java, JavaScript, and .NET.
+          </p>
+          <p class="backend-text">
+            harnessing the power of Node.js with Express and NestJS.
+
+            <br />
+          </p>
+
+          <div class="icons">
+            <i class="devicon-csharp-plain"></i>
+            <i class="devicon-java-plain"></i>
+            <i class="devicon-nodejs-plain"></i>
+            <i class="devicon-express-original"></i>
+            <i class="devicon-nestjs-plain"></i>
+            <i class="devicon-dot-net-plain-wordmark"></i>
+          </div>
+        </div>
+
+        <div class="databases">
+          <h2 class="databases-title">databases</h2>
+          <p class="databases-text">
+            expertise in Postgres, Redis, and SQL databases.
+          </p>
+          <p class="databases-text">
+            using powerful ORMs such as Prisma.
+
+            <br />
+          </p>
+          <div class="icons">
+            <i class="devicon-postgresql-plain"></i>
+            <i class="devicon-redis-plain"></i>
+            <i class="devicon-sqlite-plain"></i>
+          </div>
+        </div>
+
+        <div class="tools">
+          <h2 class="tools-title">tools</h2>
+          <p class="tools-text">
+            navigating with Docker, Vercel and Git. documentating
+          </p>
+          <p class="tools-text">
+            in Markdown, and diving into gamedev with Unity.
+          </p>
+
+          <br />
+
+          <div class="icons">
+            <i class="devicon-git-plain"></i>
+            <i class="devicon-docker-plain"></i>
+            <i class="ph-fill ph-triangle" id="vercel"></i>
+            <i class="devicon-ubuntu-plain"></i>
+            <i class="devicon-unity-original"></i>
+            <i class="devicon-bash-plain"></i>
+            <i class="devicon-markdown-original"></i>
+          </div>
+        </div>
+
+        <div class="latest-posts-container">
+          <div class="latest-posts">
+            <h2 class="latest-posts-title">latest writings</h2>
+            <p class="latest-posts-text">
+              my dev journey, insights, and discoveries.
+              <br />
+              feel free to explore my written adventures.
+            </p>
+            <ul class="posts-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p class="footer-text">
+          made with <i class="ph-fill ph-heart-straight" id="heart"></i> by
+          <a href="https://github.com/guisaliba" class="footer-link"
+            >guisaliba</a
+          >
+        </p>
+      </div>
+    </div>
+    <script src="./js/portfolio.js"></script>
   </body>
 </html>
