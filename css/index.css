@@ -305,10 +305,6 @@ a {
   color: #1384c8;
 }
 
-.devicon-docker-plain:hover {
-  color: #019bc6;
-}
-
 .devicon-postgresql-plain:hover {
   color: #336791;
 }
@@ -325,24 +321,23 @@ a {
   color: #a3a3a3;
 }
 
-#vercel:hover {
-  color: #a3a3a3;
-}
-
-.devicon-ubuntu-plain:hover {
-  color: #e95420;
-}
-
 .devicon-git-plain:hover {
   color: #f34f29;
 }
+.devicon-docker-plain:hover {
+  color: #019bc6;
+}
 
-.devicon-markdown-original:hover {
+#vercel:hover {
   color: #a3a3a3;
 }
 
 .devicon-unity-original:hover {
   color: #a3a3a3;
+}
+
+.devicon-markdown-original:hover {
+  color: #3f7bac;
 }
 
 @media (max-width: 768px) {
@@ -394,10 +389,9 @@ a {
   .tools-text,
   .latest-posts-text {
     font-size: 1rem;
-
+    text-align: center;
     align-items: center;
     justify-content: center;
-    justify-self: center;
     padding-left: 1rem;
     padding-right: 1rem;
   }
