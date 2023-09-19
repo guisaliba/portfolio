@@ -3,7 +3,7 @@
 
 ## Description
 
-This is the repo for my [portfolio](https://guisaliba.vercel.app/). For now it contains information about me and my social media links.
+This is the repo for my [portfolio](https://guisaliba.vercel.app/) website. For now, the website contains only some information about me, my social media links and my own writings on [dev.to](https://dev.to/guisaliba). I expect to change it entirely soon.
 
 ## Technologies
 
