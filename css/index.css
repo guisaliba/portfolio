@@ -14,7 +14,6 @@ a {
 .logo,
 .name,
 .age,
-.nav-info-item,
 .heart-devs,
 .frontend-title,
 .backend-title,
@@ -57,10 +56,21 @@ a {
   font-size: 2.75rem;
 }
 
+.nav-info-item {
+  font-family: 'Sora', monospace;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #e3e3e3;
+}
+
 .nav-link > a,
 .footer-link {
   color: #e3e3e3;
   text-decoration: underline;
+}
+
+.heart-devs-nav {
+  color: #fff;
 }
 
 .container {
@@ -73,6 +83,7 @@ a {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1rem;
+  align-items: center;
 
   padding: 2.5rem;
 }
@@ -81,6 +92,8 @@ a {
   color: #fff;
   font-size: 1.35rem;
   text-decoration: none;
+  border: solid 2px #fff;
+  padding: 0.5rem;
 }
 
 .nav-list {
@@ -114,11 +127,6 @@ a {
   display: flex;
   gap: 0.5rem;
   list-style-type: none;
-}
-
-.nav-info-item {
-  color: #fff;
-  font-size: 1.15rem;
 }
 
 .social {
@@ -157,7 +165,6 @@ a {
   align-items: center; /*center flex items vertically, in this case */
   flex-direction: column;
   gap: 2rem;
-  padding: 0 4rem;
 }
 
 .databases {
@@ -232,6 +239,10 @@ a {
 
 .latest-posts-text {
   margin-bottom: 1.5rem;
+}
+
+.article-date {
+  text-align: center;
 }
 
 .databases-text:nth-of-type(2),
@@ -332,4 +343,98 @@ a {
 
 .devicon-unity-original:hover {
   color: #a3a3a3;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .name,
+  .age {
+    font-size: 1.9rem;
+  }
+
+  .nav-info-item {
+    font-size: 0.8rem;
+  }
+
+  .social-item {
+    font-size: 1.25rem;
+  }
+
+  .more-info,
+  .heart-devs {
+    font-size: 0.8rem;
+  }
+
+  .frontend {
+    padding: 0 1.5rem;
+  }
+
+  .backend-title,
+  .databases-title,
+  .frontend-title,
+  .tools-title,
+  .latest-posts-title {
+    font-size: 1.5rem;
+  }
+
+  .frontend-text,
+  .backend-text,
+  .databases-text,
+  .tools-text,
+  .latest-posts-text {
+    font-size: 1rem;
+
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .frontend-text:nth-child(3) {
+    display: none;
+  }
+
+  .icons > i {
+    font-size: 2rem;
+  }
+
+  .backend {
+    padding: 0 1.8rem;
+  }
+
+  .databases {
+    padding: 0 1.5rem;
+  }
+
+  .tools {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .latest-posts {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .article-link,
+  .article-date {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .article-date {
+    margin-top: 0.75rem;
+  }
 }
