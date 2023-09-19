@@ -21,5 +21,5 @@ To install this project, clone the repository using the following command:
 git clone https://github.com/guisalibaba/portfolio.git
 ```
 
-And then open the index.html file in your browser.
+And then run index.html with Live Server.
 </samp>
