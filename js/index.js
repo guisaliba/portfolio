@@ -1,33 +1,39 @@
-//fetch
-fetch('https://dev.to/api/articles?username=guisaliba')
+fetch("https://dev.to/api/articles?username=guisaliba")
   .then((response) => {
     if (!response.ok) {
-      throw new Error('Could not fetch resource.');
+      throw new Error("Could not fetch user articles.");
     }
 
     return response.json();
   })
   .then((response) => {
     const articles = response;
-    const list = document.querySelector('.posts-list');
+    const list = document.querySelector(".posts-list");
 
     for (const article of articles) {
-      const listItem = document.createElement('li');
+      const listItem = document.createElement("li");
 
-      const link = document.createElement('a');
-      link.href = article.url;
-      link.classList.add('article-link');
-      link.textContent = article.title;
-      link.style.textDecoration = 'underline';
+      const articleUrl = document.createElement("a");
+      articleUrl.href = article.url;
+      articleUrl.classList.add("article-link");
 
-      const articleDate = document.createElement('p');
+      const truncatedTitle = article.title.substring(
+        0,
+        Math.min(45, article.title.length)
+      );
+
+      articleUrl.textContent = truncatedTitle;
+      articleUrl.style.textDecoration = "underline";
+
+      const articleDate = document.createElement("p");
       articleDate.innerHTML = new Date(
         article.published_at
       ).toLocaleDateString();
-      articleDate.classList.add('article-date');
+      articleDate.classList.add("article-date");
 
-      listItem.appendChild(link);
+      listItem.appendChild(articleUrl);
       listItem.appendChild(articleDate);
+
       list.appendChild(listItem);
     }
   });
