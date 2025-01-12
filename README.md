@@ -16,13 +16,13 @@ This project was built using:
 - CSS
 - JavaScript
 
-## Installation
+## Running
 
-To install this project, clone the repository using the following command:
+To run this project, clone the repository using the following command:
 
 ``` bash
 git clone https://github.com/guisaliba/portfolio.git
 ```
 
-And then run `index.html` with Live Server.
+And then you may run `index.html` with Live Server.
 </samp>
