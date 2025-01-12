@@ -20,7 +20,7 @@ This project was built using:
 
 To install this project, clone the repository using the following command:
 
-```
+``` bash
 git clone https://github.com/guisaliba/portfolio.git
 ```
 
