@@ -1,53 +1,57 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import matter from "gray-matter";
+import path from "path";
 
 export type Post = {
   name: string;
-  path: string;
-  html_url: string;
+  download_url: string;
 };
 
-export async function fetchBlogPosts(): Promise<Post[]> {
-  const baseUrl = process.env.GITHUB_API_BASE_URL;
-  const token = process.env.GITHUB_TOKEN;
-
-  const response = await fetch(baseUrl!, {
-    headers: token ? { Authorization: `token ${token}` } : {},
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch blog posts: ${response.url}`);
-  }
-
-  const files: Promise<Post[]> = await response.json();
-
-  return files;
+interface MDXPost extends Post {
+  data: string;
+  slug: string;
+  content: string;
 }
 
-export async function fetchMdxFromGitHub(
-  file: string
-): Promise<{ content: any; data: any }> {
-  const baseUrl = process.env.GITHUB_RAW_BASE_URL;
+async function getMDXFiles(
+  repoOwner: string,
+  repoName: string,
+  directory: string
+) {
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${directory}`;
 
-  if (!baseUrl) {
-    throw new Error(
-      "GITHUB_RAW_BASE_URL is not defined in environment variables"
-    );
-  }
+  const response = await fetch(apiUrl);
+  const data = await response.json();
 
-  const url = `${baseUrl}/${file}.mdx`;
+  return data.filter((file: Post) => path.extname(file.name) === ".mdx");
+}
 
-  const response = await fetch(url);
+async function readMDXFile(downloadUrl: string) {
+  const response = await fetch(downloadUrl);
+  const rawContent = await response.text();
 
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch MDX file: ${url}, Status: ${response.status}`
-    );
-  }
+  return matter(rawContent);
+}
 
-  const mdxContent = await response.text();
-  const { content, data } = matter(mdxContent);
+async function getMDXData(
+  repoOwner: string,
+  repoName: string,
+  directory: string
+): Promise<MDXPost[]> {
+  const mdxFiles = await getMDXFiles(repoOwner, repoName, directory);
+  return Promise.all(
+    mdxFiles.map(async (file: Post) => {
+      const { data, content } = await readMDXFile(file.download_url);
+      const slug = path.basename(file.name, path.extname(file.name));
 
-  return { content, data };
+      return {
+        data,
+        slug,
+        content,
+      };
+    })
+  );
+}
+
+export async function getPosts() {
+  return getMDXData("guisaliba", "brain", "blog/posts");
 }
