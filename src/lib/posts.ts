@@ -1,15 +1,25 @@
 import matter from "gray-matter";
 import path from "path";
 
-export type Post = {
-  name: string;
-  download_url: string;
-};
+// (Optional) define a shape for frontmatter you expect
+interface Frontmatter {
+  title?: string;
+  [key: string]: any;
+}
 
-interface MDXPost extends Post {
-  data: string;
+export interface MDXRawPost {
+  name: string;
   slug: string;
-  content: string;
+  content: string; // the raw MDX string
+  frontmatter: Frontmatter; // the parsed frontmatter
+  // plus anything else you might want
+}
+
+interface GitHubFile {
+  name: string;
+  path: string;
+  download_url: string;
+  [key: string]: any;
 }
 
 async function getMDXFiles(
@@ -18,40 +28,44 @@ async function getMDXFiles(
   directory: string
 ) {
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${directory}`;
-
   const response = await fetch(apiUrl);
   const data = await response.json();
-
-  return data.filter((file: Post) => path.extname(file.name) === ".mdx");
+  return data.filter((file: GitHubFile) => path.extname(file.name) === ".mdx");
 }
 
 async function readMDXFile(downloadUrl: string) {
   const response = await fetch(downloadUrl);
   const rawContent = await response.text();
 
-  return matter(rawContent);
+  // Grab frontmatter + content
+  const { data, content } = matter(rawContent);
+
+  return {
+    frontmatter: data,
+    content, // raw MDX
+  };
 }
 
-async function getMDXData(
-  repoOwner: string,
-  repoName: string,
-  directory: string
-): Promise<MDXPost[]> {
+export async function getPosts(): Promise<MDXRawPost[]> {
+  const repoOwner = "guisaliba";
+  const repoName = "brain";
+  const directory = "blog/posts";
+
   const mdxFiles = await getMDXFiles(repoOwner, repoName, directory);
+
+  // Build an array of raw MDX posts
   return Promise.all(
-    mdxFiles.map(async (file: Post) => {
-      const { data, content } = await readMDXFile(file.download_url);
+    mdxFiles.map(async (file) => {
+      const { frontmatter, content } = await readMDXFile(file.download_url);
+
       const slug = path.basename(file.name, path.extname(file.name));
 
       return {
-        data,
+        name: file.name,
         slug,
-        content,
+        content, // raw MDX
+        frontmatter, // any frontmatter data
       };
     })
   );
-}
-
-export async function getPosts() {
-  return getMDXData("guisaliba", "brain", "blog/posts");
 }
