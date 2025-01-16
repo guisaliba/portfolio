@@ -27,7 +27,7 @@ git clone https://github.com/guisaliba/portfolio.git
 Then run:
 
 ``` bash
-yarn dev
+npm run dev
 ```
 
 </samp>
