@@ -6,7 +6,7 @@
 
 ## Description
 
-This is the repo for my  [website](https://guisaliba.vercel.app). For now the website contains only some information about me, social media links and my own writings on [dev.to](https://dev.to/guisaliba). I'll soon rework it entirely to v2.
+This is the repo for my [website](https://guisaliba.vercel.app)'s v1.
 
 ## Technologies
 
