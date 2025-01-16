@@ -1,37 +1,15 @@
 import { getPosts } from "@/lib/posts";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-
-// export async function generateStaticParams() {
-//   const posts = await fetchBlogPosts();
-
-//   return posts.map((post: Post) => ({
-//     post: post.name.replace(/\.mdx$/, ""),
-//   }));
-// }
+import { MDXRemote } from "next-mdx-remote/rsc";
+import NavBar from "@/app/ui/Navbar";
+import Header from "@/app/ui/Header";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { title: string };
-}) {
-  const { title } = params;
-  return { title: `${title}` };
-}
-
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function Blog({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
   const posts = await getPosts();
@@ -41,16 +19,28 @@ export default async function Page({
     notFound();
   }
 
-  try {
-    return (
-      <article className="prose mx-auto">
-        <MDXRemote source={post.content} />
-        <p>
-          <a href={post.download_url}>View on GitHub</a>
-        </p>
+  return (
+    <>
+      <NavBar />
+      <article>
+        {/* <h1>{post.frontmatter?.title ?? post.slug}</h1> */}
+        <MDXRemote
+          source={post.content} // RAW MDX
+          options={
+            {
+              // e.g. remark/rehype plugins
+              // remarkPlugins: [require("remark-gfm")],
+              // rehypePlugins: [require("rehype-slug")],
+            }
+          }
+          components={{
+            // e.g. custom React components
+            // that appear in your MDX files:
+            // Header, CodeBlock, etc.
+            Header,
+          }}
+        />
       </article>
-    );
-  } catch (error) {
-    return <h1>Could not load post: {`${error}`}</h1>;
-  }
+    </>
+  );
 }
