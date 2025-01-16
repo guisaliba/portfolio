@@ -6,15 +6,15 @@
 
 ## Description
 
-This is the repo for my  [website](https://guisaliba.vercel.app). For now the website contains only some information about me, social media links and my own writings on [dev.to](https://dev.to/guisaliba). I'll soon rework it entirely to v2.
+This is the repo for the v2 of my [website](https://guisaliba.vercel.app)
 
 ## Technologies
 
 This project was built using:
 
-- HTML
-- CSS
-- JavaScript
+- React
+- Next.js
+- TailwindCSS
 
 ## Running
 
@@ -24,5 +24,10 @@ To run this project, clone the repository using the following command:
 git clone https://github.com/guisaliba/portfolio.git
 ```
 
-And then you may run `index.html` with Live Server.
+Then run:
+
+``` bash
+yarn dev
+```
+
 </samp>
