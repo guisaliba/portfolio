@@ -1,24 +1,21 @@
-import { fetchBlogPosts } from "@/lib/posts";
+import { getPosts } from "@/lib/posts";
+import Link from "next/link";
 
-export async function generateStaticParams() {
-  const posts = await fetchBlogPosts();
+export default async function BlogPage() {
+  const posts = await getPosts();
 
-  return posts.map((post) => ({
-    title: post.name.replace(/\.mdx$/, ""),
-    url: post.html_url,
-  }));
-}
-
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ title: string; url: string }>;
-}) {
-  const { title, url } = await params;
   return (
-    <div>
-      <h1>{title}</h1>
-      <a href={url}>View on GitHub</a>
-    </div>
+    <>
+      <h1>Blog</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`}>
+              {post.frontmatter?.title ?? post.slug}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
