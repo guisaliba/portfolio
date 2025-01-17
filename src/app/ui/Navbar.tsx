@@ -18,7 +18,6 @@ export default function Navbar() {
           {/* Add more <BreadcrumbItem /> dinamically with blog posts from route params */}
         </BreadcrumbList>
       </Breadcrumb>
-      ;
     </>
   );
 }
