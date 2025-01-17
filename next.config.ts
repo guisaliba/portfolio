@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -7,6 +6,4 @@ const nextConfig: NextConfig = {
   transpilePackages: ["next-mdx-remote"],
 };
 
-const withMDX = createMDX({});
-
-export default withMDX(nextConfig);
+export default nextConfig;
