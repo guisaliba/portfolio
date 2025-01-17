@@ -1,15 +1,26 @@
-import { getPosts } from "@/lib/posts";
+// src/app/blog/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
-import NavBar from "@/app/ui/Navbar";
+
+// remark/rehype plugins
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+
+import Container from "@/app/ui/Container";
 import Header from "@/app/ui/Header";
 import Footer from "@/app/ui/Footer";
-import Container from "@/app/ui/Container";
+import NavBar from "@/app/ui/Navbar";
+
+import { getPosts } from "@/lib/posts";
+import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
+
+export const dynamicParams = false;
 
 interface BlogParams {
   params: {
@@ -22,26 +33,49 @@ interface Frontmatter {
 }
 
 export default async function Blog({ params }: BlogParams) {
-  const availableComponents = { Header, Footer, NavBar };
-
   const { slug } = await params;
 
   const posts = await getPosts();
-  const post = posts.find((post) => post.slug === slug);
 
+  const post = posts.find((p) => p.slug === slug);
   if (!post) {
     notFound();
   }
 
-  const data = await compileMDX<Frontmatter>({
+  const { content: compiledContent } = await compileMDX<Frontmatter>({
     source: post.content,
     options: {
-      parseFrontmatter: true,
+      // 'parseFrontmatter: true' is optional
+      // (you already have frontmatter from getPosts)
+
+      mdxOptions: {
+        // crucial to parse # Headings => <h1>, etc.
+        remarkPlugins: [remarkParse, remarkGfm, remarkRehype],
+        rehypePlugins: [],
+      },
     },
-    components: availableComponents,
+    components: {
+      Header,
+      Footer,
+      NavBar,
+    },
   });
 
-  return <Container className="mt-10">{data.content}</Container>;
-}
+  // 5) Render your UI
+  return (
+    <>
+      <div className={cn("max-w-[80rem] px-6 md:px-12 mx-auto")}>
+        <h1 className="mb-2 text-4xl font-bold">{post.frontmatter.title}</h1>
+        <h2 className="mb-2 text-lg font-bold">
+          {post.frontmatter.description}
+        </h2>
+        <h2 className="text-sm font-bold">Reading time: {post.readingTime}</h2>
+        <h2 className="text-sm font-bold">
+          Tags: {post.frontmatter.tags?.join(", ")}
+        </h2>
+      </div>
 
-export const dynamicParams = false;
+      <Container className="mt-10">{compiledContent}</Container>
+    </>
+  );
+}

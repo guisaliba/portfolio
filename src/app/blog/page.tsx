@@ -1,5 +1,5 @@
-import { getPosts } from "@/lib/posts";
 import Link from "next/link";
+import { getPosts } from "@/lib/posts";
 
 export default async function BlogPage() {
   const posts = await getPosts();
@@ -10,9 +10,12 @@ export default async function BlogPage() {
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>
-              {post.frontmatter?.title ?? post.slug}
-            </Link>
+            <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
+            <br />
+            <small>
+              {post.frontmatter.tags?.join(", ")} — {post.readingTime}
+            </small>
+            <p>{post.frontmatter.description}</p>
           </li>
         ))}
       </ul>

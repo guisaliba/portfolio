@@ -1,69 +1,93 @@
 import matter from "gray-matter";
+import readingTime from "reading-time";
 import path from "path";
-
-// (Optional) define a shape for frontmatter you expect
-interface Frontmatter {
-  title?: string;
-  [key: string]: unknown;
-}
-
-export interface MDXRawPost {
-  name: string;
-  slug: string;
-  content: string;
-  frontmatter: Frontmatter;
-}
 
 interface GitHubFile {
   name: string;
   path: string;
   download_url: string;
-  [key: string]: unknown;
 }
 
+export interface MDXPost {
+  slug: string;
+  frontmatter: {
+    title?: string;
+    tags?: string[];
+    description?: string;
+  };
+  content: string;
+  readingTime: string; // computed reading time
+}
+
+/**
+ * Fetch all MDX files at a given path in a GitHub repo
+ * and return the uncompiled content + frontmatter.
+ */
+export async function getPosts(): Promise<MDXPost[]> {
+  const repoOwner = "guisaliba";
+  const repoName = "brain";
+  const directory = "blog/posts";
+
+  const files = await getMDXFiles(repoOwner, repoName, directory);
+
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const rawContent = await fetchMDXFile(file.download_url);
+
+      // Parse frontmatter
+      const { data, content } = matter(rawContent);
+
+      // Calculate reading time from the post content
+      const stats = readingTime(content);
+
+      const slug = path.basename(file.name, path.extname(file.name));
+
+      console.log(data.description);
+
+      return {
+        slug,
+        frontmatter: {
+          title: data.title || slug,
+          tags: data.tags || [],
+          description: data.description || "",
+        },
+        content,
+        readingTime: stats.text,
+      };
+    })
+  );
+
+  return posts;
+}
+
+/**
+ * Fetch the list of .mdx files in a GitHub repo directory
+ */
 async function getMDXFiles(
   repoOwner: string,
   repoName: string,
   directory: string
 ) {
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${directory}`;
+
   const response = await fetch(apiUrl);
-  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(
+      `GitHub API error: ${response.status} ${response.statusText}`
+    );
+  }
 
-  return data.filter((file: GitHubFile) => path.extname(file.name) === ".mdx");
+  const data: GitHubFile[] = await response.json();
+  return data.filter((file) => path.extname(file.name) === ".mdx");
 }
 
-async function readMDXFile(downloadUrl: string) {
+/**
+ * Fetch the raw text of a single MDX file from GitHub
+ */
+async function fetchMDXFile(downloadUrl: string): Promise<string> {
   const response = await fetch(downloadUrl);
-  const content = await response.text();
-
-  // Grab frontmatter + content
-  const { data } = matter(content);
-
-  return {
-    frontmatter: data,
-    content, // raw MDX
-  };
-}
-
-export async function getPosts(): Promise<MDXRawPost[]> {
-  const repoOwner = "guisaliba";
-  const repoName = "brain";
-  const directory = "blog/posts";
-
-  const mdxFiles = await getMDXFiles(repoOwner, repoName, directory);
-
-  return Promise.all(
-    mdxFiles.map(async (file: GitHubFile) => {
-      const { frontmatter, content } = await readMDXFile(file.download_url);
-
-      const slug = path.basename(file.name, path.extname(file.name));
-
-      return {
-        slug,
-        content,
-        frontmatter, // any frontmatter data
-      };
-    })
-  );
+  if (!response.ok) {
+    throw new Error(`Failed to fetch file: ${downloadUrl}`);
+  }
+  return response.text();
 }
